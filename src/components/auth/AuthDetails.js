@@ -36,7 +36,7 @@ const AuthDetails = () => {
       ) : page ? (
         <SignUp updateState={updateState} />
       ) : (
-        <SignIn updateState={updateState} />
+        <SignIn className="login" updateState={updateState} />
       )}
     </div>
   );

@@ -18,47 +18,113 @@ const Routing = () => {
       .catch((error) => console.log(error));
   };
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  // Function to handle checkbox change
+  const handleClick = () => {
+    // Toggle the checked status
+    setIsChecked(!isChecked);
+  };
+
   return (
     <Router>
-      <div style={{ display: "flex" }}>
+      <div className="all">
         <nav className="navbar">
           <div className="logo__id">
             <div className="logo">
-              <MdBubbleChart style={{ fontSize: "50px", color: "#1D5B79" }} />
+              <MdBubbleChart style={{ fontSize: "4em", color: "#1A5A71" }} />
             </div>
             <div className="navcontent">
-              <h3 style={{ fontWeight: "normal", fontSize: "1.5rem" }}>
+              <h3
+                style={{
+                  fontWeight: "normal",
+                  fontSize: "1.5rem",
+                  margin: "0",
+                }}
+              >
                 AnemiaNet
               </h3>
+            </div>
+            
+            <div className="hamburger-lines" onClick={handleClick}>
+              <span className={!isChecked ? "line line1" : "line line1 line1_trns"}></span>
+              <span className={!isChecked ? "line line2" : "line line2 line2_trns"}></span>
+              <span className={!isChecked ? "line line3" : "line line3 line3_trns"}></span>
             </div>
           </div>
           <div className="page_routes">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">
+                  <p>Home</p>
+                </Link>
               </li>
               <li>
-                <Link to="/prediction">Prediction</Link>
+                <Link to="/prediction">
+                  <p>Prediction</p>
+                </Link>
               </li>
               <li>
-                <Link to="/howtouse">How to use</Link>
+                <Link to="/howtouse">
+                  <p>How to use</p>
+                </Link>
               </li>
               <li>
-                <Link to="/about">About Us</Link>
+                <Link to="/about">
+                  <p>About Us</p>
+                </Link>
               </li>
               <li>
-                <Link to="/history">History</Link>
+                <Link to="/history">
+                  <p>History</p>
+                </Link>
               </li>
-              <li onClick={userSignOut}>Sign Out</li>
+              <li onClick={userSignOut}>
+                <p>Sign Out</p>
+              </li>
             </ul>
           </div>
         </nav>
+
+          {isChecked && <div className="page_routes_2">
+            <ul>
+              <li className="home2">
+                <Link to="/">
+                  <p >Home</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/prediction">
+                  <p>Prediction</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/howtouse">
+                  <p>How to use</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/about">
+                  <p>About Us</p>
+                </Link>
+              </li>
+              <li>
+                <Link to="/history">
+                  <p>History</p>
+                </Link>
+              </li>
+              <li onClick={userSignOut}>
+                <p>Sign Out</p>
+              </li>
+            </ul>
+          </div>}
+
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/prediction" element={<Predict />} />
-            <Route path="/about" element={<AboutUs />} />
             <Route path="/howtouse" element={<HowToUse />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/history" element={<History />} />
           </Routes>
         </div>

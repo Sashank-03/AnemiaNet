@@ -2,6 +2,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../../firebase";
 import "./Auth.css";
+import backgroundImage from '../../images/bg3.jpg'; // Adjust the path to your image file
+
+
+
 const SignIn = ({ updateState }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +23,8 @@ const SignIn = ({ updateState }) => {
   };
 
   return (
+    <div className="login" style={{ backgroundImage: `url(${backgroundImage})` }}>
+
     <div className="login-box">
       <div className="login-header">
         <header>Log In to your Account</header>
@@ -63,6 +69,7 @@ const SignIn = ({ updateState }) => {
           Sign Up
         </p>
       </div>
+    </div>
     </div>
   );
 };

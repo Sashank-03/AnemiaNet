@@ -11,16 +11,12 @@
   /* filter: blur(10px);  */
 }
 
-.App::before {
+/* .App::before {
   content: "";
-  background: url("./images/bg2.jpg"); /* Replace with your image URL */
-  background-size: cover;
-  background-position: center;
-  filter: blur(4px); /* Apply a blur filter to the background image */
-  position: absolute;
+  
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: -1;
-}
+} */

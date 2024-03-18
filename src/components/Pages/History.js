@@ -5,6 +5,79 @@ import { getUserEmail } from "../auth/UserEmail";
 import { MdDelete } from "react-icons/md";
 import "./history.css";
 const History = () => {
+  {
+    /* <img src={entry.pmimg} alt="Palm" /> */
+  }
+  {
+    /* <img src={entry.fnimg} alt="FingerNail" /> */
+  }
+  {
+    /* </div> */
+  }
+  {
+    /* <img src={entry.cjimg} alt="Conjunctiva" /> */
+  }
+  {
+    /* <h2 style={{ marginBottom: "13px", marginTop: "17px" }}>Image</h2> */
+  }
+  {
+    /* <h2 style={{ marginBottom: "13px", marginTop: "17px" }}>Image</h2> */
+  }
+  // <div className="card-content">
+  //             <div className="column">
+  //               <h2>CNN</h2>
+  //               <h2>KNN</h2>
+  //               <h2>RF</h2>
+  //             </div>
+  //             <div className="column">
+  //               <div
+  //                 style={{
+  //                   position: "absolute",
+  //                   right: "-30px",
+  //                   fontWeight: "bold",
+  //                   top: "-10px",
+  //                 }}
+  //               >
+  //                 Conjunctiva
+  //               </div>
+  //               <div className="cell">{entry.cjcnn}</div>
+  //               <div className="cell">{entry.cjknn}</div>
+  //               <div className="cell">{entry.cjrf}</div>
+  //             </div>
+  //             <div className="column">
+  //               <div style={{ position: "relative" }}>
+  //                 <div
+  //                   style={{
+  //                     position: "absolute",
+  //                     right: "-20px",
+  //                     fontWeight: "bold",
+  //                     top: "-10px",
+  //                   }}
+  //                 >
+  //                   FingerNail
+  //                 </div>
+  //               </div>
+  //               <div className="cell">{entry.fncnn}</div>
+  //               <div className="cell">{entry.fnknn}</div>
+  //               <div className="cell">{entry.fnrf}</div>
+  //             </div>
+  //             <div className="column">
+  //               <div style={{ position: "relative" }}>
+  //                 <div
+  //                   style={{
+  //                     position: "absolute",
+  //                     right: "0px",
+  //                     fontWeight: "bold",
+  //                     top: "-10px",
+  //                   }}
+  //                 >
+  //                   Palm
+  //                 </div>
+  //               </div>
+  //               <div className="cell">{entry.pmcnn}</div>
+  //               <div className="cell">{entry.pmknn}</div>
+  //               <div className="cell">{entry.pmrf}</div>
+
   const [historyData, setHistoryData] = useState([]);
 
   async function fetchHistoryData() {
@@ -66,85 +139,55 @@ const History = () => {
         <div
           key={entry.DocId}
           className="history-box"
-          style={{
-            boxShadow:
-              entry.no > 50
-                ? "0px 29px 52px 0px rgba(126,211,33,1),0px 25px 16px 0px rgba(184,233,134,1)"
-                : "0px 29px 52px 0px rgba(208,2,27,1),0px 25px 16px 0px rgba(208,2,27,1)",
-          }}
+          style={
+            {
+              // boxShadow:
+              //   entry.no > 50
+              //     ? "0px 29px 52px 0px rgba(126,211,33,1),0px 25px 16px 0px rgba(184,233,134,1)"
+              //     : "0px 29px 52px 0px rgba(208,2,27,1),0px 25px 16px 0px rgba(208,2,27,1)",
+            }
+          }
         >
-          <div className="header">
+          <div className="seg1">
             <h3>{entry.yes}</h3>
           </div>
-          <span className="timestamp">
-            {new Date(entry.time.toDate()).toLocaleString()}
-          </span>
-          <div className="card-content">
-            <div className="column">
-              <h2 style={{ marginBottom: "13px", marginTop: "17px" }}>Image</h2>
-              <h2>CNN</h2>
-              <h2>KNN</h2>
-              <h2>RF</h2>
+          <div className="seg2">
+            <div className="col1">
+              <div className="nan ele">ABC</div>
+              <div className="ele">CNN</div>
+              <div className="ele">KNN</div>
+              <div className="ele">RF</div>
             </div>
-            <div className="column">
-              <div style={{ position: "relative" }}>
-                <div
-                  style={{
-                    position: "absolute",
-                    right: "-30px",
-                    fontWeight: "bold",
-                    top: "-10px",
-                  }}
-                >
-                  Conjunctiva
-                </div>
-                <img src={entry.cjimg} alt="Conjunctiva" />
-              </div>
-              <div className="cell">{entry.cjcnn}</div>
-              <div className="cell">{entry.cjknn}</div>
-              <div className="cell">{entry.cjrf}</div>
+            <div className="col2">
+              <div className="shd ele">Conjuctiva</div>
+              <div className="ele">{entry.cjcnn}</div>
+              <div className="ele">{entry.cjknn}</div>
+              <div className="ele">{entry.cjrf}</div>
             </div>
-            <div className="column">
-              <div style={{ position: "relative" }}>
-                <div
-                  style={{
-                    position: "absolute",
-                    right: "-20px",
-                    fontWeight: "bold",
-                    top: "-10px",
-                  }}
-                >
-                  FingerNail
-                </div>
-                <img src={entry.fnimg} alt="FingerNail" />
-              </div>
-              <div className="cell">{entry.fncnn}</div>
-              <div className="cell">{entry.fnknn}</div>
-              <div className="cell">{entry.fnrf}</div>
+            <div className="col3">
+              <div className="shd ele">FingerNail</div>
+              <div className="ele">{entry.fncnn}</div>
+              <div className="ele">{entry.fnknn}</div>
+              <div className="ele">{entry.fnrf}</div>
             </div>
-            <div className="column">
-              <div style={{ position: "relative" }}>
-                <div
-                  style={{
-                    position: "absolute",
-                    right: "0px",
-                    fontWeight: "bold",
-                    top: "-10px",
-                  }}
-                >
-                  Palm
-                </div>
-                <img src={entry.pmimg} alt="Palm" />
-              </div>
-              <div className="cell">{entry.pmcnn}</div>
-              <div className="cell">{entry.pmknn}</div>
-              <div className="cell">{entry.pmrf}</div>
+            <div className="col4">
+              <div className="shd ele">Palm</div>
+              <div className="ele">{entry.pmcnn}</div>
+              <div className="ele">{entry.pmknn}</div>
+              <div className="ele">{entry.pmrf}</div>
             </div>
+          </div>
+
+          <div className="seg3">
+            <span className="">
+              <p>Time of Prediction:</p>
+              {new Date(entry.time.toDate()).toLocaleString()}
+            </span>
             <button
-              className="delete-button"
+              className="button-30"
               onClick={() => deleteHistoryEntry(entry.DocId)}
             >
-              <MdDelete />
+              <MdDelete />Delete
             </button>
           </div>
         </div>

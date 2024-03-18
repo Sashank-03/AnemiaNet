@@ -27,7 +27,7 @@ const Predict = () => {
   const [Features, setFeatures] = useState(Array(9).fill("0"));
   const finalprediction = () => {
     document.removeEventListener("mouseup", handleMouseUp);
-    fetch(" http://127.0.0.1:5000/final", {
+    fetch("https://anemianetserver-j553.onrender.com/final", {
       method: "POST",
       body: JSON.stringify({ features: Features }),
       headers: {

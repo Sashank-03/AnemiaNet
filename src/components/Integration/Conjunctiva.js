@@ -17,7 +17,7 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
   const drawPoints = () => {
     if (image) {
       const ctx = canvasRef.current.getContext("2d");
-      const radius = 2;
+      const radius = 5;
       ctx.fillStyle = "red";
 
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -82,6 +82,8 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
         console.log("resize");
         console.log(clientWidth);
         console.log(clientHeight);
+        // console.log(displayHeight);
+        // console.log(displayWidth);
         ctx.canvas.width = displayWidth;
         ctx.canvas.height = displayHeight;
         const div1 = div1Ref.current;
@@ -95,8 +97,9 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
           console.log("Margin-left of div1:", marginLeft);
           div2.style.left = "-" + marginLeft + "px";
           const windoheight = window.innerHeight;
-          const marginTop = 60 + (windoheight - 60 - 490) / 2;
-          div2.style.top = "-" + marginTop + "px";
+          // const marginTop = 60 + (windoheight - 60 - 490) / 2;
+          // div2.style.top = "-" + marginTop + "px";
+          // div2.style.top = "500px";
         }
         setPolygon([]);
         drawImage();
@@ -133,8 +136,8 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
         console.log("Margin-left of div1:", marginLeft);
         div2.style.left = "-" + marginLeft + "px";
         const windoheight = window.innerHeight;
-        const marginTop = 60 + (windoheight - 60 - 490) / 2;
-        div2.style.top = "-" + marginTop + "px";
+        // const marginTop = 60 + (windoheight - 60 - 490) / 2;
+        // div2.style.top = "-" + marginTop + "px";
       }
 
       const comp1 = document.querySelector(".cropcomp3");
@@ -183,21 +186,21 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
   // ... (previous code remains unchanged)
 
   const cropAndDisplayImage = () => {
-    // const x = image.width;
-    // const y = image.height;
+    const x = image.width;
+    const y = image.height;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     var displayWidth = ctx.canvas.width;
     var displayHeight = ctx.canvas.height;
-    // if (x > y) {
-    //   const aspectRatio = x / y;
-    //   displayWidth = 1000;
-    //   displayHeight = 1000 * aspectRatio;
-    // } else {
-    //   const aspectRatio = y / x;
-    //   displayWidth = 700 * aspectRatio;
-    //   displayHeight = 700;
-    // }
+    if (x > y) {
+      const aspectRatio = x / y;
+      displayWidth = 1000;
+      displayHeight = 1000 * aspectRatio;
+    } else {
+      const aspectRatio = y / x;
+      displayWidth = 700 * aspectRatio;
+      displayHeight = 700;
+    }
 
     const minX = Math.min(...polygon.map((point) => point.x));
     const minY = Math.min(...polygon.map((point) => point.y));
@@ -257,7 +260,7 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
 
   function sendToServer(dataURL) {
     // Send dataURL to server route /conjunctiva
-    fetch(" http://127.0.0.1:5000/conjunctiva", {
+    fetch("https://anemianetserver-j553.onrender.com/conjunctiva", {
       method: "POST",
       body: JSON.stringify({ image_data: dataURL }),
       headers: {
@@ -333,7 +336,7 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
     setcj(false);
     const comp1 = document.querySelector(".cropcomp1");
     comp1.style.boxShadow =
-      " rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,rgba(0, 0, 0, 0.3) 0px 30px 60px -30px";
+      "rgba(50, 205, 50, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px";
   };
   const clearpopup = () => {
     setCroppedImage(null);

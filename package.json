@@ -1,9 +1,13 @@
 {
   "name": "react-firebase-auth",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://anemianetserver-j553.onrender.com/",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

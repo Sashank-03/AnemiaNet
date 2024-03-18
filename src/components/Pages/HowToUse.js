@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./howtouse.css";
 import imgcap from "../../images/ImageCapture.jpg";
 import imgup from "../../images/ImageUpload.jpg";
@@ -10,7 +10,9 @@ import tt from "../../images/Tutorial-Thumbnail.jpg";
 import tutorial from "../../video/Tutorial.mp4";
 const HowToUse = () => {
   const instructionsRef = useRef(null);
+  const containerRef = useRef(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrolllLeft, setScrollLeft] = useState(0);
 
@@ -46,16 +48,14 @@ const HowToUse = () => {
   };
 
   const scrollCard = (scrollAmount) => {
-    const maxScroll =
-      instructionsRef.current.scrollWidth - instructionsRef.current.clientWidth;
-    let newScroll = instructionsRef.current.scrollLeft + scrollAmount;
-
-    // Check if new scroll position exceeds maximum scroll position
-    if (newScroll > maxScroll || newScroll < 0) {
-      newScroll = 0; // Set scroll position to 0
-    }
-
-    instructionsRef.current.scrollLeft = newScroll;
+    const cardWidth = instructionsRef.current.offsetWidth; // Width of the card
+    const currentScroll = instructionsRef.current.scrollLeft;
+    const newIndex = Math.round(currentScroll / cardWidth);
+    const newScroll = newIndex * cardWidth;
+    instructionsRef.current.scrollTo({
+      left: newScroll + scrollAmount,
+      behavior: "smooth",
+    });
   };
 
   const scrollLeft = () => {
@@ -66,6 +66,16 @@ const HowToUse = () => {
   const scrollRight = () => {
     const cardWidth = instructionsRef.current.offsetWidth; // Width of the card
     scrollCard(cardWidth);
+  };
+
+  const handleHover = (isHovered) => {
+    const guidelines = containerRef.current.querySelector(".guidelines");
+    if (isHovered) {
+      guidelines.style.animationPlayState = "paused";
+      // guidelines.style.overflowY = "scroll";
+    } else {
+      guidelines.style.animationPlayState = "running";
+    }
   };
 
   return (
@@ -87,7 +97,7 @@ const HowToUse = () => {
               <img src={imgcap} alt="Capture"></img>
             </div>
             <div className="rightbox">
-              <h2>1 Image Capture</h2>
+              <h2>Step-1: Image Capture</h2>
               <p>
                 -Take the images of your Palm, Nails and the conjunctiva of the
                 eye to upload them in the predictions page.
@@ -104,7 +114,7 @@ const HowToUse = () => {
               <img src={imgup} alt="upload"></img>
             </div>
             <div className="rightbox">
-              <h2> 2 Image Upload</h2>
+              <h2> Step-2: Image Upload</h2>
               <p>- Upload the captured images into the predictions page</p>
               <p>- Carefully upload the image in the Designated input feilds</p>
             </div>
@@ -114,7 +124,7 @@ const HowToUse = () => {
               <img src={imgcrp} alt="Crop"></img>
             </div>
             <div className="rightbox">
-              <h2>3 Image Cropping</h2>
+              <h2>Step-3: Image Cropping</h2>
               <p>
                 - Now you need to crop the uploaded image according to the video
                 guide given below.
@@ -131,7 +141,7 @@ const HowToUse = () => {
               <img src={pred} alt="Predict"></img>
             </div>
             <div className="rightbox">
-              <h2> 4 Prediction</h2>
+              <h2> Step-4: Prediction</h2>
               <p>
                 -Press the predict button for each of the uploaded image to know
                 the various results for that particular image
@@ -143,7 +153,7 @@ const HowToUse = () => {
               <img src={rpt} alt="Repeat"></img>
             </div>
             <div className="rightbox">
-              <h2> 5 Repetition</h2>
+              <h2> Step-5: Repetition</h2>
               <p>
                 -Repeat the above steps similarly for each image to get the
                 output{" "}
@@ -159,7 +169,7 @@ const HowToUse = () => {
               <img src={fpred} alt="Final Predict"></img>
             </div>
             <div className="rightbox">
-              <h2> 6 Final Prediction</h2>
+              <h2> Step-6: Final Prediction</h2>
               <p>
                 -After completing the above mentioned process the final
                 prediction button appears on the screen
@@ -177,7 +187,7 @@ const HowToUse = () => {
       </div>
       <div className="vbox">
         <div className="video">
-          <h2>Tutorial Video</h2>
+          {/* <h2>Tutorial Video</h2> */}
           <video
             poster={tt}
             src={tutorial}
@@ -188,32 +198,51 @@ const HowToUse = () => {
             className="orgv"
           />
         </div>
-        <div className="tips">
-          <h2>Guidelines for Image Capture and Upload </h2>
-          <ul>
-            <li>Click the images in a well-lit environment</li>
-            <li>Keep the device stable while clicking the image</li>
-            <li>Ensure that the lenses are clean before clicking the image</li>
-            <li>Follow the video guide for reference</li>
-            <li>
-              Consider taking the image in landscape for better aspect ratio
-            </li>
-            <li>For the fingernail image upload the image of the thumb</li>
-            <li>
-              For the conjunctiva image carefully observe the video to
-              understand how to capture the conjunctiva clearly in the eye
-            </li>
-            <li>
-              Ensure that the hands are clean before taking the image of the
-              Palm
-            </li>
-            <li>
-              Be careful while taking the image of the eye as it is a very
-              sensitive organ, ensure your hands are clean before touching the
-              conjunctiva region and try not to harm your eyes while capturing
-              the image.
-            </li>
-          </ul>
+        <div>
+          <h2 className="guidelines-heading">
+            Guidelines for Image Capture and Upload{" "}
+          </h2>
+          <div
+            className="tips"
+            ref={containerRef}
+            onMouseEnter={() => handleHover(true)}
+            onMouseLeave={() => handleHover(false)}
+          >
+            <ul className="guidelines">
+              <br></br>
+              <br></br>
+              <br></br>
+              <li> &#x2022; Click the images in a well-lit environment</li>
+              <li> &#x2022; Keep the device stable while clicking the image</li>
+              <li>
+                &#x2022; Ensure that the lenses are clean before clicking the
+                image
+              </li>
+              <li> &#x2022; Follow the video guide for reference</li>
+              <li>
+                &#x2022; Consider taking the image in landscape for better
+                aspect ratio
+              </li>
+              <li>
+                {" "}
+                &#x2022; For the fingernail image upload the image of the thumb
+              </li>
+              <li>
+                &#x2022; For the conjunctiva image carefully observe the video
+                to understand how to capture the conjunctiva clearly in the eye
+              </li>
+              <li>
+                &#x2022; Ensure that the hands are clean before taking the image
+                of the Palm
+              </li>
+              <li>
+                &#x2022; Be careful while taking the image of the eye as it is a
+                very sensitive organ, ensure your hands are clean before
+                touching the conjunctiva region and try not to harm your eyes
+                while capturing the image.
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

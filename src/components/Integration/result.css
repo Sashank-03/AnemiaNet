@@ -1,22 +1,41 @@
 .frcontainer {
-  height: calc(100vh - 60px);
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 20px;
+  /* height: 92vh; */
+  /* width: 100vw; */
+  display: flex;
+  overflow: hidden;
+  /* grid-template-columns: 2fr 3fr; */
+  gap: 3vw;
+  padding: 0 5vw;
 }
 
 .image-section {
-  background-color: #ffffff;
-  text-align: center;
-  overflow: hidden;
+  /* background-color: #ffffff; */
+  /* text-align: center;
+  overflow: hidden; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92vh;
+
 }
 .image-section img {
-  width: 100%;
-  object-fit: fill; /* Fit the image inside the container while preserving aspect ratio */
+  width: 35vw;
+  object-fit: cover; /* Fit the image inside the container while preserving aspect ratio */
+  /* align-self: center; */
+  padding-left: 2vw;
+
+}
+
+.head{
+  display: flex;
+  gap: 7.5em;
 }
 .text-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+  /* top: 30%; */
+  padding-top: 18vh;
+  gap: 3vh;
 }

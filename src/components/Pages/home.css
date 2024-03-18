@@ -1,9 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+@media  only screen and (max-width: 1000px){
+  .mhome{
+    font-size: 11px !important;
+  }
+}
+
 .mhome {
-  height: calc(100vh - 60px);
-  width: 100%;
-  overflow: auto;
+  /* height: calc(100vh - 60px); */
+  width: 100vw;
+  background-color: #ffffff;
+  /* height: 100vh; */
+  /* overflow: auto; */
   font-size: 14px;
+  /* margin-top: 8vh; */
+  padding: 0vh 3em 0 3em;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
 }
 .hmain {
   /* height: auto; */
@@ -14,6 +31,7 @@
     flex-direction: column;
     justify-content: center; */
   text-align: left;
+
 }
 
 .home {
@@ -28,10 +46,11 @@
   flex-direction: column;
   /* align-items: center; */
   justify-content: center;
+  padding: 0 4em 0 0;
 }
 
 .p1 {
-  font-size: 1.3em;
+  font-size: 1.6em;
 }
 
 .p2 {
@@ -39,27 +58,67 @@
   margin: 0 0 0 2em;
 }
 .p3 {
-  font-size: 0.9em;
+  font-size: 1.1em;
   margin: 0.5em 0 0 0;
   text-align: left;
   /* line-height: 0.5; */
 }
 
 .p4 {
-  font-size: 1em;
+  font-size: 1.1em;
   margin: 0.5em 0 0 0;
 }
 .p5 {
-  font-size: 1em;
+  font-size: 1.1em;
   margin: 0.8em 0 0 0;
 
   /* display: flex;
     align-items: flex-start; */
 }
 
+.carousel {
+  position: relative;
+  padding-left: 0;
+  margin: 1em 0 0 0;
+  height: 6em;
+  overflow: hidden;
+}
+
+/* Each picture in the carousel is 100% of the parent. */
+.carousel > p {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  animation: carousel 9s ease infinite;
+}
+
+/* The keyframes for the carousel */
+@keyframes carousel {
+  0% { transform: translateX(100%); }
+  16.66%, 33.33% { transform: translateX(0); }
+  50%, 66.66% { transform: translateX(-100%); }
+  83.33%, 100% { transform: translateX(-200%); }
+}
+
+.carousel > p:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.carousel > p:nth-child(2) {
+  animation-delay: 3s; /* Adjust based on your preference */
+}
+
+.carousel > p:nth-child(3) {
+  animation-delay: 6s; /* Adjust based on your preference */
+}
+
+
 .image img {
   overflow: hidden;
-  max-width: 38vw;
+  padding-top: 2em;
+  max-width:33em;
   /* max-height: 70vh; */
   object-fit: contain; /* Maintain aspect ratio and fit the entire image within its container */
 }
@@ -70,8 +129,8 @@
 }
 
 /* CSS */
-.button-30 {
-  width: 20vw;
+.button-30-home {
+  width: 27vw;
   align-items: center;
   appearance: none;
   background-color: #fcfcfd;
@@ -84,16 +143,17 @@
   cursor: pointer;
   display: inline-flex;
   font-family: "JetBrains Mono", monospace;
-  height: 48px;
+  height: 6vh;
   justify-content: center;
   line-height: 1;
   list-style: none;
   overflow: hidden;
   padding-left: 14px;
   padding-right: 14px;
-  position: absolute;
-  bottom: 1em;
-  right: 5em;
+  margin-top: 1em;
+  /* position: absolute; */
+  /* bottom: 1em;
+  right: 5em; */
   text-align: left;
   text-decoration: none;
   transition: box-shadow 0.15s, transform 0.15s;
@@ -105,18 +165,18 @@
   font-size: 18px;
 }
 
-.button-30:focus {
+.button-30-home:focus {
   box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
 }
 
-.button-30:hover {
+.button-30-home:hover {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
-.button-30:active {
+.button-30-home:active {
   box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateY(2px);
 }

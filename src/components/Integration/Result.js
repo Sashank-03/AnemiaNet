@@ -1,5 +1,5 @@
 import "./result.css";
-import rst from "../../images/image.jpg";
+import rst from "../../images/res.png";
 const Result = ({ data }) => {
   return (
     <div class="frcontainer">
@@ -8,36 +8,17 @@ const Result = ({ data }) => {
       </div>
       <div class="text-section">
         <h1>Final Results</h1>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: "100px",
-            marginBottom: "30px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+        <div  className="head">
+          <div>
             <h2>Anemic</h2>
             <h2>{data.yes}%</h2>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+          <div>
             <h2> Non-Anemic</h2>
             <h2>{data.no}%</h2>
           </div>
         </div>
-        <div style={{ marginBottom: "40px" }}>
+        <div>
           <h4>
             To Know more about the Anemia click{" "}
             <span>
@@ -53,7 +34,7 @@ const Result = ({ data }) => {
           </h4>
         </div>
         <div>
-          <p style={{ textAlign: "justify", paddingRight: "5px" }}>
+          <p>
             <strong style={{ color: "red" }}>Disclaimer:</strong>
             This anemia detection tool provides informational predictions based
             on machine learning and deep learning models trained on images of
@@ -65,7 +46,7 @@ const Result = ({ data }) => {
             health, consult with a licensed healthcare professional for proper
             diagnosis and treatment. */}
           </p>
-          <p style={{ textAlign: "justify", paddingRight: "5px" }}>
+          <p>
             By using this anemia detection tool, you acknowledge and agree to
             the terms of this disclaimer.
           </p>

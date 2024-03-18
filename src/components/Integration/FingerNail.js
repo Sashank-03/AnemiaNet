@@ -241,7 +241,7 @@ const FingerNail = ({ setfn, setf, setimg }) => {
 
   function sendToServer(dataURL) {
     // Send dataURL to server route /finger nail
-    fetch(" http://127.0.0.1:5000/finger_nail", {
+    fetch("https://anemianetserver-j553.onrender.com/finger_nail", {
       method: "POST",
       body: JSON.stringify({ image_data: dataURL }),
       headers: {

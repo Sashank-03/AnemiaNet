@@ -1,20 +1,20 @@
 .htumain {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 60px);
+  /* height: calc(100vh - 60px); */
   width: 100vw;
+  height: 100vh;
   /* background-color: rgb(164, 255, 225); */
   background-color: #ebf3f9;
-  padding: 3vh 5vw 0 5vw;
-  overflow: auto;
+  padding: 8vh 5vw 8vh 5vw;
+  overflow: hidden;
 }
 .scroll-container {
   position: relative;
-  height: 50%;
+  height: 45vh;
   display: flex;
-  padding: 0px 3.5vw;
+  padding: 4vh 4vw 3vh 4vw;
   background-color: #ebf3f9;
-  margin-bottom: 2vh;
 }
 
 .scroll-button {
@@ -26,8 +26,8 @@
   font-size: 3.5vw;
   cursor: pointer;
   z-index: 1;
-  clip-path: circle();
-  background-color: #ebf3f9;
+  /* clip-path: circle(); */
+  /* background-color: #ebf3f9; */
 }
 
 .scroll-button.left {
@@ -41,11 +41,21 @@
 .instructions {
   display: flex;
   flex-direction: row;
+  /* gap: 5vw;
+  justify-content: space-around; */
   width: 100%; /* Adjust for the width of both buttons */
   height: 100%;
-  overflow: hidden; /* Hide the scrollbar */
+  /* overflow: hidden; Hide the scrollbar */
   background-color: transparent;
   border-radius: 25px;
+  overflow-x: scroll;
+  scroll-behavior: smooth; /* Smooth scrolling behavior */
+  transition: transform 0.5s ease;
+  scrollbar-width: none;
+}
+
+.instructions:hover {
+  transition: none; /* Disable transition on hover */
 }
 
 .i-card {
@@ -84,18 +94,19 @@
 }
 .vbox {
   display: flex;
-  flex-direction: row;
-  height: auto;
-  gap: 20px;
+  justify-content: center; 
+  align-items: center; 
+  height: 40vh;
+  gap: 4vw;
 }
 .video {
-  height: 100%;
-  width: 50%;
+  height: 30vh;
+  width: 36vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 4%;
+  padding: 2vh 0 0 0;
 }
 .orgv {
   width: 100%;
@@ -106,11 +117,41 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 30px;
+  /* padding-left: 30px; */
   text-align: center;
-  width: 50%;
-  /* overflow-y: scroll; */
+  width: 45vw;
+  position: relative;
+  overflow: hidden;
+  height: 25vh;
+
 }
-.tips ul {
+.guidelines {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  /* margin: 3em 0; */
+  /* margin: 0; */
+  position: absolute; /* Add absolute positioning */
+  top: 0; /* Start at the top of the container */
+  animation: scroll infinite linear 25s; /* Use CSS animation for scrolling */
+  scrollbar-width: none;
   text-align: left;
+  gap: 1em;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0); /* Start scrolling from top */
+  }
+  100% {
+    transform: translateY(-100%); /* Scroll up by the height of the content */
+  }
+}
+
+
+
+
+.guidelines-heading{
+  margin: 0.3em 0 0.8em 0;
+  font-size: 1.5em;
 }
