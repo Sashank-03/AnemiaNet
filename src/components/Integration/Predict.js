@@ -13,6 +13,13 @@ import {
   serverTimestamp,
   doc,
 } from "firebase/firestore";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleInfo
+} from "@fortawesome/free-solid-svg-icons";
+
+
 const Predict = () => {
   const fbcontRef = useRef(null); // Create a ref
 
@@ -92,10 +99,29 @@ const Predict = () => {
   };
   document.addEventListener("mouseup", handleMouseUp);
 
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div className="predict">
+      <div className="right-container">
+        <Link to="/howtouse">
+          <button
+            className="right-container-button"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          >
+            <span className={`long-text ${hovered ? "show-long-text" : ""}`}>
+              How to use
+            </span>
+            <span className="short-text">
+            <FontAwesomeIcon id="icon-chat" icon={faCircleInfo} />
+            </span>
+          </button>
+        </Link>
+      </div>
       {!Final && (
         <div className="prediction">
+          
           <Conjunctiva
             setcj={setCj}
             setf={setFeatures}

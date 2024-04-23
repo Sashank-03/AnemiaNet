@@ -40,8 +40,8 @@ const Palm = ({ setpm, setf, setimg }) => {
           div2.style.right = "-" + marginRight + "px";
           console.log("Margin-right of div1:", marginRight);
           const windoheight = window.innerHeight;
-          const marginTop = 60 + (windoheight - 60 - 490) / 2;
-          div2.style.top = "-" + marginTop + "px";
+          // const marginTop = 60 + (windoheight - 60 - 490) / 2;
+          div2.style.top = "-12vh";
         }
         setPolygon([]);
         drawImage();
@@ -76,8 +76,8 @@ const Palm = ({ setpm, setf, setimg }) => {
         div2.style.right = "-" + marginRight + "px";
         console.log("Margin-right of div1:", marginRight);
         const windoheight = window.innerHeight;
-        const marginTop = 60 + (windoheight - 60 - 490) / 2;
-        div2.style.top = "-" + marginTop + "px";
+        // const marginTop = 60 + (windoheight - 60 - 490) / 2;
+        div2.style.top = "-12vh";
       }
       const comp1 = document.querySelector(".cropcomp1");
       const comp2 = document.querySelector(".cropcomp2");
@@ -199,7 +199,7 @@ const Palm = ({ setpm, setf, setimg }) => {
   const drawPoints = () => {
     if (image) {
       const ctx = canvasRef.current.getContext("2d");
-      const radius = 2;
+      const radius = 5;
       ctx.fillStyle = "red";
 
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -317,8 +317,10 @@ const Palm = ({ setpm, setf, setimg }) => {
       sendToServer(Data);
       setIsPred(true);
       const comp1 = document.querySelector(".cropcomp3");
-      comp1.style.boxShadow =
-        "rgb(0, 255, 0) 0px 50px 100px -20px, rgb(0, 255, 0) 0px 30px 60px -30px";
+      // comp1.style.boxShadow =
+      //   "rgb(0, 255, 0) 0px 50px 100px -20px, rgb(0, 255, 0) 0px 30px 60px -30px";
+      comp1.style.border = "4px solid green";
+
     }
   };
   const displayPredictions = (data) => {
@@ -411,9 +413,9 @@ const Palm = ({ setpm, setf, setimg }) => {
       {IsPred && !image && croppedImage && (
         <div className="predictions">
           <h3>Predictions</h3>
-          <h4 id="cnnpm">CNN</h4>
-          <h4 id="knnpm">KNN</h4>
-          <h4 id="rfpm">RF</h4>
+          <h4 id="cnnpm">Loading...</h4>
+          <h4 id="knnpm">Loading...</h4>
+          <h4 id="rfpm">Loading...</h4>
         </div>
       )}
 

@@ -17,7 +17,7 @@ const FingerNail = ({ setfn, setf, setimg }) => {
   const drawPoints = () => {
     if (image) {
       const ctx = canvasRef.current.getContext("2d");
-      const radius = 2;
+      const radius = 5;
       ctx.fillStyle = "red";
 
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -120,8 +120,9 @@ const FingerNail = ({ setfn, setf, setimg }) => {
       // Ensure both elements are available
       if (div2) {
         const windoheight = window.innerHeight;
-        const marginTop = 60 + (windoheight - 60 - 490) / 2;
-        div2.style.top = "-" + marginTop + "px";
+        // const marginTop = 60 + (windoheight - 60 - 490) / 2;
+        // div2.style.top = "-" + marginTop + "px";
+        div2.style.top = "-12vh";
       }
       const comp1 = document.querySelector(".cropcomp1");
       const comp2 = document.querySelector(".cropcomp3");
@@ -305,8 +306,10 @@ const FingerNail = ({ setfn, setf, setimg }) => {
       sendToServer(Data);
       setIsPred(true);
       const comp1 = document.querySelector(".cropcomp2");
-      comp1.style.boxShadow =
-        "rgb(0, 255, 0) 0px 50px 100px -20px, rgb(0, 255, 0) 0px 30px 60px -30px";
+      // comp1.style.boxShadow =
+      //   "rgb(0, 255, 0) 0px 50px 100px -20px, rgb(0, 255, 0) 0px 30px 60px -30px";
+      comp1.style.border = "4px solid green";
+
     }
   };
 
@@ -400,9 +403,9 @@ const FingerNail = ({ setfn, setf, setimg }) => {
       {IsPred && !image && croppedImage && (
         <div className="predictions">
           <h3>Predictions</h3>
-          <h4 id="cnnfn">CNN</h4>
-          <h4 id="knnfn">KNN</h4>
-          <h4 id="rffn">RF</h4>
+          <h4 id="cnnfn">Loading...</h4>
+          <h4 id="knnfn">Loading...</h4>
+          <h4 id="rffn">Loading...</h4>
         </div>
       )}
 

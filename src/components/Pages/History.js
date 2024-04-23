@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { db } from "../../firebase";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { getUserEmail } from "../auth/UserEmail";
@@ -78,11 +78,66 @@ const History = () => {
   //               <div className="cell">{entry.pmknn}</div>
   //               <div className="cell">{entry.pmrf}</div>
 
-  const [historyData, setHistoryData] = useState([]);
+  // const [historyData, setHistoryData] = useState([]);
 
-  async function fetchHistoryData() {
+  // async function fetchHistoryData() {
+  //   const email = getUserEmail();
+  //   const historyRef = collection(db, email); // Replace with your collection name
+  //   const querySnapshot = await getDocs(historyRef);
+  //   const data = [];
+  //   querySnapshot.forEach((doc) => {
+  //     var datadoc = doc.data();
+  //     console.log(doc.data());
+  //     const convertValue = (value) => {
+  //       if (value === "0") return "Non-Anemic";
+  //       else if (value === "1") return "Anemic";
+  //       else {
+  //         const floatValue = parseFloat(value);
+  //         return floatValue > 0.5 ? "Non-Anemic" : "Anemic";
+  //       }
+  //     };
+  //     // Convert values for specified properties
+  //     [
+  //       "cjcnn",
+  //       "cjknn",
+  //       "cjrf",
+  //       "fncnn",
+  //       "fnknn",
+  //       "fnrf",
+  //       "pmcnn",
+  //       "pmknn",
+  //       "pmrf",
+  //     ].forEach((property) => {
+  //       datadoc[property] = convertValue(datadoc[property]);
+  //     });
+  //     const floatValue = parseFloat(datadoc["yes"]);
+  //     datadoc["yes"] = floatValue < 50 ? "Non-Anemic" : "Anemic";
+  //     //   console.log(doc);
+  //     data.push({ ...datadoc }); // Add timestamp as property
+  //   });
+  //   data.sort((a, b) => b.time.toDate() - a.time.toDate());
+  //   return data;
+  // }
+  // const loadHistory = async () => {
+  //   const data = await fetchHistoryData();
+  //   setHistoryData(data);
+  // };
+  // useEffect(() => {
+  //   loadHistory();
+  // }, []);
+
+  // const deleteHistoryEntry = async (timestamp) => {
+  //   const email = getUserEmail();
+  //   await deleteDoc(doc(db, email, timestamp));
+  //   loadHistory();
+  // };
+
+  const [historyData, setHistoryData] = useState([]);
+  const [load, setLoad] = useState(true);
+
+  const fetchHistoryData = useCallback(async () => {
     const email = getUserEmail();
-    const historyRef = collection(db, email); // Replace with your collection name
+    const historyRef = collection(db, email);
     const querySnapshot = await getDocs(historyRef);
     const data = [];
     querySnapshot.forEach((doc) => {
@@ -97,7 +152,6 @@ const History = () => {
         }
       };
 
-      // Convert values for specified properties
       [
         "cjcnn",
         "cjknn",
@@ -112,24 +166,29 @@ const History = () => {
         datadoc[property] = convertValue(datadoc[property]);
       });
       const floatValue = parseFloat(datadoc["yes"]);
-      datadoc["yes"] = floatValue < 50 ? "Non-Anemic" : "Anemic";
-      //   console.log(doc);
-      data.push({ ...datadoc }); // Add timestamp as property
+      const am = "Anemic (" + datadoc["yes"]+"%)";
+      const nam = "Non-Anemic (" + datadoc["no"]+"%)";
+      datadoc["yes"] = floatValue < 50 ? nam : am;
+      data.push({ ...datadoc });
     });
     data.sort((a, b) => b.time.toDate() - a.time.toDate());
     return data;
-  }
-  const loadHistory = async () => {
+  }, []);
+
+  const loadHistory = useCallback(async () => {
     const data = await fetchHistoryData();
     setHistoryData(data);
-  };
+    setLoad(false);
+  }, [fetchHistoryData]);
   useEffect(() => {
     loadHistory();
-  }, []);
+  }, [loadHistory]);
 
   const deleteHistoryEntry = async (timestamp) => {
     const email = getUserEmail();
     await deleteDoc(doc(db, email, timestamp));
+    setLoad(true);
+    setHistoryData([]);
     loadHistory();
   };
 
@@ -149,7 +208,7 @@ const History = () => {
           }
         >
           <div className="seg1">
-            <h3>{entry.yes}</h3>
+          <h3 style={{ color: entry.yes.includes("Non-Anemic") ? "green" : "red" }}>{entry.yes}</h3>
           </div>
           <div className="seg2">
             <div className="col1">

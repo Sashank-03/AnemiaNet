@@ -186,21 +186,21 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
   // ... (previous code remains unchanged)
 
   const cropAndDisplayImage = () => {
-    const x = image.width;
-    const y = image.height;
+    // const x = image.width;
+    // const y = image.height;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     var displayWidth = ctx.canvas.width;
     var displayHeight = ctx.canvas.height;
-    if (x > y) {
-      const aspectRatio = x / y;
-      displayWidth = 1000;
-      displayHeight = 1000 * aspectRatio;
-    } else {
-      const aspectRatio = y / x;
-      displayWidth = 700 * aspectRatio;
-      displayHeight = 700;
-    }
+    // if (x > y) {
+    //   const aspectRatio = x / y;
+    //   displayWidth = 1000;
+    //   displayHeight = 1000 * aspectRatio;
+    // } else {
+    //   const aspectRatio = y / x;
+    //   displayWidth = 700 * aspectRatio;
+    //   displayHeight = 700;
+    // }
 
     const minX = Math.min(...polygon.map((point) => point.x));
     const minY = Math.min(...polygon.map((point) => point.y));
@@ -352,8 +352,9 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
       sendToServer(Data);
       setIsPred(true);
       const comp1 = document.querySelector(".cropcomp1");
-      comp1.style.boxShadow =
-        "rgb(0, 255, 0) 0px 50px 100px -20px, rgb(0, 255, 0) 0px 30px 60px -30px";
+      // comp1.style.boxShadow =
+      //   "rgb(0, 255, 0) 0px 50px 100px -20px, rgb(0, 255, 0) 0px 30px 60px -30px";
+      comp1.style.border = "4px solid green";
     }
   };
   return (
@@ -416,9 +417,9 @@ const Conjunctiva = ({ setcj, setf, setimg }) => {
       {IsPred && !image && croppedImage && (
         <div className="predictions ">
           <h3>Predictions</h3>
-          <h4 id="cnncj">CNN</h4>
-          <h4 id="knncj">KNN</h4>
-          <h4 id="rfcj">RF</h4>
+          <h4 id="cnncj">Loading...</h4>
+          <h4 id="knncj">Loading...</h4>
+          <h4 id="rfcj">Loading...</h4>
         </div>
       )}
 
