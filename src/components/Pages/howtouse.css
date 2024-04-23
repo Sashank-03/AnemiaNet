@@ -1,3 +1,9 @@
+@media  only screen and (max-height: 660px){
+  .htumain{
+    font-size: 10px !important;
+  }
+}
+
 .htumain {
   display: flex;
   flex-direction: column;

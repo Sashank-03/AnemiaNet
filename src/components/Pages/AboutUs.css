@@ -1,4 +1,11 @@
 /* Overall Structure and Alignment */
+@media  only screen and (max-height: 660px){
+  .container{
+    font-size: 10px !important;
+  }
+}
+
+
 .container {
   /* position: relative; */
   /* width: 100%; */

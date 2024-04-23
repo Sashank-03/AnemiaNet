@@ -3,7 +3,7 @@
 }
 
 .cropcomp1 {
-  width: 20vw;
+  width: 21vw;
   height: 75vh;
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
@@ -12,17 +12,18 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: flex;
+  gap: 2vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   z-index: 1;
   transition: box-shadow 0.7s ease;
-  padding: 3vh 0;
+  padding: 3vh 2vw;
   /* margin-right: auto;
   margin-left: auto; */
 }
 .cropcomp2 {
-  width: 20vw;
+  width: 21vw;
   height: 75vh;
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
@@ -36,12 +37,12 @@
   justify-content: space-evenly;
   transition: box-shadow 0.7s ease;
   z-index: 1;
-  padding: 3vh 0;
+  padding: 3vh 2vw;
   /* margin-right: auto;
   margin-left: auto; */
 }
 .cropcomp3 {
-  width: 20vw;
+  width: 21vw;
   height: 75vh;
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
@@ -55,7 +56,7 @@
   justify-content: space-evenly;
   transition: box-shadow 0.7s ease;
   z-index: 1;
-  padding: 3vh 0;
+  padding: 3vh 2vw;
   /* margin-right: auto;
   margin-left: auto; */
 }

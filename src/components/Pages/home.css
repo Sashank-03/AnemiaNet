@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-@media  only screen and (max-width: 1000px){
+@media  only screen and (max-height: 660px){
   .mhome{
     font-size: 10px !important;
   }

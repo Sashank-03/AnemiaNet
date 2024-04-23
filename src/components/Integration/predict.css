@@ -1,3 +1,9 @@
+@media  only screen and (max-height: 660px){
+  .predict{
+    font-size: 10px !important;
+  }
+}
+
 .predict {
   /* height: calc(100vh - 60px); */
   padding-top: 8vh;
