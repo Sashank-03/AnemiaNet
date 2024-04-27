@@ -1,5 +1,5 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import React, { useRef, useState } from "react";
 import { auth } from "../../firebase";
 import "./Auth.css";
 import backgroundImage from '../../images/bg3.jpg'; // Adjust the path to your image file
@@ -10,6 +10,7 @@ const SignIn = ({ updateState }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const showErrmsg = useRef(null);
 
   const signIn = (e) => {
     e.preventDefault();
@@ -19,7 +20,48 @@ const SignIn = ({ updateState }) => {
       })
       .catch((error) => {
         console.log(error);
+        showErrmsg.current.textContent = error.message; // Displaying error message
+        showErrmsg.current.style.width = "auto";
+        showErrmsg.current.style.height = "auto";
+        showErrmsg.current.style.padding = "0.5rem 1.5rem";
+        setTimeout(() => {
+          // Setting a timeout to hide the error message after 4 seconds
+          showErrmsg.current.style.width = "0px";
+          showErrmsg.current.style.height = "0px";
+          showErrmsg.current.style.padding = "0";
+          showErrmsg.current.textContent = "";
+        }, 4000);
       });
+  };
+
+  const forgotPass = async () => {
+    try {
+      showErrmsg.current.textContent =
+        "Password reset email sent successfully!"; // Displaying message
+      showErrmsg.current.style.width = "auto";
+      showErrmsg.current.style.height = "auto";
+      showErrmsg.current.style.padding = "0.5rem 1.5rem";
+      setTimeout(() => {
+        // Setting a timeout to hide the error message after 4 seconds
+        showErrmsg.current.style.width = "0px";
+        showErrmsg.current.style.height = "0px";
+        showErrmsg.current.style.padding = "0";
+        showErrmsg.current.textContent = "";
+      }, 4000);
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      showErrmsg.current.textContent = error.message; // Displaying error message
+      showErrmsg.current.style.width = "auto";
+      showErrmsg.current.style.height = "auto";
+      showErrmsg.current.style.padding = "0.5rem 1.5rem";
+      setTimeout(() => {
+        // Setting a timeout to hide the error message after 4 seconds
+        showErrmsg.current.style.width = "0px";
+        showErrmsg.current.style.height = "0px";
+        showErrmsg.current.style.padding = "0";
+        showErrmsg.current.textContent = "";
+      }, 4000);
+    }
   };
 
   return (
@@ -56,8 +98,8 @@ const SignIn = ({ updateState }) => {
           </label>
         </section>
         <section>
-          <p>Forgot password</p>
-        </section>
+        <p onClick={forgotPass}>Forgot password</p>
+                </section>
       </div>
       <div className="input-submit">
         <button className="submit-btn" id="submit" onClick={signIn}></button>
@@ -70,6 +112,7 @@ const SignIn = ({ updateState }) => {
         </p>
       </div>
     </div>
+    <div className="errormsg" ref={showErrmsg}></div>
     </div>
   );
 };

@@ -59,43 +59,81 @@
 }
 .p3 {
   font-size: 1.1em;
-  margin: 0.5em 0 0 0;
+  /* margin: 0.5em 0 0 0; */
   text-align: left;
   /* line-height: 0.5; */
 }
 
 .p4 {
   font-size: 1.1em;
-  margin: 0.5em 0 0 0;
+  /* margin: 0.5em 0 0 0; */
 }
 .p5 {
   font-size: 1.1em;
-  margin: 0.8em 0 0 0;
+  /* margin: 0.8em 0 0 0; */
 
   /* display: flex;
     align-items: flex-start; */
 }
 
-.carousel {
+.carousel-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* padding-left: 30px; */
+  text-align: center;
+  width: 55vw;
   position: relative;
-  padding-left: 0;
-  margin: 1em 0 0 0;
-  height: 6em;
   overflow: hidden;
+  height: 15vh;
+  margin-top: 3vh;
+
+}
+
+.carousel {
+  /* position: relative; */
+  padding-left: 0;
+  /* padding-top: 9vh; */
+  margin: 2em 0 0 0;
+  height: 6vh;
+  width: 55vw;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  /* margin: 3em 0; */
+  /* margin: 0; */
+  position: absolute; 
+  /* top: 60vh;  */
+  animation: scroll infinite linear 10s; /* Use CSS animation for scrolling */
+  scrollbar-width: none;
+  text-align: left;
+  gap: 1em;
+  /* z-index: 5; */
 }
 
 /* Each picture in the carousel is 100% of the parent. */
-.carousel > p {
+/* .carousel > p {
   width: 100%;
   position: absolute;
   top: 0;
   display: flex;
   justify-content: center;
   animation: carousel 9s ease infinite;
+} */
+
+
+@keyframes scroll {
+  0% {
+    /* transform: translateY(100%);  */
+  }
+  100% {
+    transform: translateY(-300%); /* Scroll up by the height of the content */
+  }
 }
 
 /* The keyframes for the carousel */
-@keyframes carousel {
+/* @keyframes carousel {
   0% { transform: translateX(100%); }
   16.66%, 33.33% { transform: translateX(0); }
   50%, 66.66% { transform: translateX(-100%); }
@@ -107,12 +145,12 @@
 }
 
 .carousel > p:nth-child(2) {
-  animation-delay: 3s; /* Adjust based on your preference */
+  animation-delay: 3s; 
 }
 
 .carousel > p:nth-child(3) {
-  animation-delay: 6s; /* Adjust based on your preference */
-}
+  animation-delay: 6s; 
+} */
 
 
 .image img {

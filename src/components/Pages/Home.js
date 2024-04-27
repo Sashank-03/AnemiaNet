@@ -14,27 +14,31 @@ const Home = () => {
               ability to carry oxygen efficiently.
             </p>
             {/* <p className='p2'>Causes: Nutritional deficiencies (iron, vitamin B12, folate), chronic diseases (kidney disease, cancer), genetic conditions (sickle cell anemia, thalassemia), and blood loss from injury or menstruation.</p> */}
-                <div className="carousel">
 
-                  <p className="p3">
+            <div className="carousel-parent">
+
+                <ul className="carousel">
+
+                  <li className="p3">
                     <span style={{ fontWeight: "500" }}>Symptoms:&nbsp;</span> Fatigue,
                     weakness, shortness of breath, dizziness, pale skin, cold hands
                     and feet, chest pain, and headache.
-                  </p>
+                  </li>
 
-                  <p className="p4">
+                  <li className="p4">
                     In India, as of 2021, around 50% of women and 20% of men are
                     affected by anemia, according to the World Health Organization
                     (WHO).
-                  </p>
+                  </li>
 
-                  <p className="p5">
+                  <li className="p5">
                     Globally, anemia affects approximately 1.62 billion people,
                     with the highest prevalence in preschool-age children,
                     pregnant women, and women of reproductive age, as reported by
                     the Global Burden of Disease study in 2020.
-                  </p>
-                </div>
+                  </li>
+                </ul>
+            </div>
 
 
           </div>

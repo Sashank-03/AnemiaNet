@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { auth } from "../../firebase";
 import "./Auth.css";
 import backgroundImage from '../../images/bg3.jpg'; // Adjust the path to your image file
@@ -10,6 +10,7 @@ const SignUp = ({ updateState }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const showErrmsg = useRef(null);
 
   const signUp = (e) => {
     e.preventDefault();
@@ -19,6 +20,18 @@ const SignUp = ({ updateState }) => {
       })
       .catch((error) => {
         console.log(error);
+        console.log(error);
+        showErrmsg.current.textContent = error.message; // Displaying error message
+        showErrmsg.current.style.width = "auto";
+        showErrmsg.current.style.height = "auto";
+        showErrmsg.current.style.padding = "0.5rem 1.5rem";
+        setTimeout(() => {
+          // Setting a timeout to hide the error message after 4 seconds
+          showErrmsg.current.style.width = "0px";
+          showErrmsg.current.style.height = "0px";
+          showErrmsg.current.style.padding = "0";
+          showErrmsg.current.textContent = "";
+        }, 4000);
       });
   };
 
@@ -71,6 +84,7 @@ const SignUp = ({ updateState }) => {
         </p>
       </div>
     </div>
+    <div className="errormsg" ref={showErrmsg}></div>
     </div>
 
   );
